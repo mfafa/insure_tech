@@ -2,6 +2,7 @@
 
 -- load quotes
 {% macro load_quotes() %}
+USE SCHEMA insurance;
     COPY INTO insure_tech.insurance.quotes
     FROM (
       SELECT
@@ -23,6 +24,7 @@
 
 -- load policies
 {% macro load_policies() %}
+USE SCHEMA insurance;
     COPY INTO insure_tech.insurance.policies
     FROM (
       SELECT
@@ -43,6 +45,7 @@
 
 -- load submissions
 {% macro load_submissions() %}
+USE SCHEMA insurance;
     COPY INTO insure_tech.insurance.submissions
     FROM (
       SELECT

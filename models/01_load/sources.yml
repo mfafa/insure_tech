@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: insurance
+    database: insure_tech           
+    schema: insurance               
+    tables:
+      - name: quotes
+      - name: policies
+      - name: submissions
