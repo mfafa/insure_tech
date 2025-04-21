@@ -1,4 +1,7 @@
-/* Load Raw .csv data from Snowflake tables, cast to proper field types. */
+/* 1. Load Raw .csv data from Snowflake tables
+   2. Cast to proper field types.
+*/
+
 {{ config(materialized='view') }}
 
 SELECT

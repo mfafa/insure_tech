@@ -1,0 +1,38 @@
+# name: Scheduled DBT Load and Build (Midnight EST)
+
+# on:
+#   schedule:
+#     - cron: '0 5 * * *'  # Midnight EST (UTC+5)
+#   workflow_dispatch:
+
+# jobs:
+#   dbt-load-and-build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.11'
+
+#       - name: Install dbt + Snowflake adapter
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install dbt-core dbt-snowflake  # or replace with your adapter
+
+#       - name: Set up dbt profile
+#         run: |
+#           mkdir -p ~/.dbt
+#           echo "${{ secrets.DBT_PROFILES_YML }}" > ~/.dbt/profiles.yml
+
+#       - name: Load_all
+#         run: |
+#           dbt run-operation load_all
+
+#       - name: Run dbt build (full-refresh)
+#         run: |
+#           dbt deps
+#           dbt build --full-refresh

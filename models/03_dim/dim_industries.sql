@@ -4,8 +4,8 @@
 ) }}
 
 SELECT DISTINCT
-  industry,
-  UPPER(REPLACE(industry, ' ', '_')) AS industry_slug
+  industry
+  -- placeholder dim table, label / group industries at a later date
 FROM {{ ref('stg_submissions') }}
 WHERE industry IS NOT NULL
 {% if is_incremental() %}

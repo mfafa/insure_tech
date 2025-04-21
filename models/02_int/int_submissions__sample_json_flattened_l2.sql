@@ -1,3 +1,5 @@
+/* This currently results in a blank table, but will be used for nested json */
+
 {{ config(materialized='incremental', unique_key='merge_key') }}
 
 WITH flattened AS (
@@ -11,9 +13,10 @@ WITH flattened AS (
       PARTITION BY concat(f.application_id, '|', f.json_key, '|', nested.key)
       ORDER BY f.application_id
     ) AS row_num
-  FROM {{ ref('int_submissions__sample_json_flattened') }} f,
-  LATERAL FLATTEN(input => f.nested_1) nested
-  WHERE IS_OBJECT(f.nested_1)
+  FROM {{ ref('int_submissions__sample_json_flattened_l1') }} f,
+  LATERAL FLATTEN(input => f.nested_json_value) nested
+  WHERE --IS_OBJECT(f.nested_json_value)
+  f.nested_json_value IS NOT NULL
 )
 
 SELECT *
