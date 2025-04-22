@@ -17,18 +17,22 @@ clean-targets:
   - "dbt_packages"
 
 models:
-  my_new_project:
+  insure_tech:
     +materialized: view  # Default for everything, unless overridden
     +on_schema_change: sync_all_columns  # Optional, but good for incremental
     # You can override materialization by folder
-    staging:
+    01_stg:
       +materialized: view
-    int:
+    02_int:
       +materialized: incremental
       +incremental_strategy: merge
-    fct:
+    03_fct:
       +materialized: incremental
       +incremental_strategy: merge
-    marts:
+    03_dim:
       +materialized: incremental
       +incremental_strategy: merge
+    04_marts:
+      +materialized: incremental
+      +incremental_strategy: merge
+
