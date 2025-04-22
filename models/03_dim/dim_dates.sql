@@ -1,3 +1,6 @@
+/* Creates a date table which allows accurately reporting running hit rate values
+, even on days where a quote or policy was not created */
+
 {{ config(
     materialized='table',
     tags=['calendar', 'date_spine']

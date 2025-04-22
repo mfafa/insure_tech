@@ -1,3 +1,5 @@
+/* dim_states fact table, star schema, with additional context for grouping by region */
+
 {{ config(
     materialized='incremental',
     unique_key='state'

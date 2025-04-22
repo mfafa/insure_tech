@@ -1,3 +1,5 @@
+/* Events based model which ignores relational modeling, so that all quotes and policies are included in calculations */
+
 {{ config(
     materialized='table',
     tags=['fct', 'lifecycle', 'insurance']
