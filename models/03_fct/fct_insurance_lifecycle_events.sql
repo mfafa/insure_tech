@@ -9,6 +9,7 @@ WITH int_policies AS (
     p.policy_id,
     NULL AS quote_id,
     p.policy_created_at AS event_date,
+    'policy_bound' AS event_type,
     NULL AS quote_count,
     1 AS policy_count,
     s.state,
@@ -26,6 +27,7 @@ int_quotes AS (
     NULL AS policy_id,
     COALESCE(q.quote_id, 'missing_quote_id') AS quote_id,
     q.quoted_date AS event_date,
+    'quote_sent' AS event_type,
     1 AS quote_count,
     NULL AS policy_count,
     s.state,
@@ -51,13 +53,14 @@ date_spine AS (
 final_events AS (
   SELECT 
     ds.event_date,
+    le.event_type,
     le.application_id,
     le.quote_id,
     le.policy_id,
     le.quote_count,
     le.policy_count,
     le.state,
-    le.industry
+    le.industry   
   FROM date_spine ds
   LEFT JOIN lifecycle_union le
     ON le.event_date = ds.event_date
