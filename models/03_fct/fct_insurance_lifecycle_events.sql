@@ -45,8 +45,8 @@ lifecycle_union AS (
   SELECT * FROM int_quotes
 ),
 
--- Cross join date spine to bring all dates into the model
-date_spine AS (
+-- Cross join calendar lookup to bring all dates into the model
+calendar AS (
   SELECT date AS event_date
   FROM {{ ref('dim_dates') }}
 ),
@@ -54,7 +54,7 @@ date_spine AS (
 -- Join date spine to events
 final_events AS (
   SELECT 
-    ds.event_date,
+    c.event_date,
     le.event_type,
     le.application_id,
     le.quote_id,
@@ -63,9 +63,9 @@ final_events AS (
     le.policy_count,
     le.state,
     le.industry   
-  FROM date_spine ds
+  FROM calendar c
   LEFT JOIN lifecycle_union le
-    ON le.event_date = ds.event_date
+    ON le.event_date = c.event_date
 )
 
 SELECT * FROM final_events

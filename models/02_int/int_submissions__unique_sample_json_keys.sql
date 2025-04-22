@@ -1,4 +1,4 @@
-/* Builds a list of all unique json keys */
+/* Builds a list of all unique json keys  to be used in pivot model*/
 
 {{ config(
     materialized='incremental',

@@ -5,7 +5,7 @@ WITH ranked_submissions AS (
     application_id,
     state,
     industry,
-    -- sample_json, -- remove as this is in an int_mart
+    -- sample_json, -- removed as this is flattened in a separate model
     submission_date,
     __loaded_at,
     __file_name,

@@ -1,8 +1,8 @@
-{% macro json_pivot_keys() %}
-    {% set keys = get_unique_json_keys(ref('int_submissions__unique_sample_json_keys')) %}
-    (
-        {% for key in keys %}
-            '{{ key }}'{% if not loop.last %}, {% endif %}
-        {% endfor %}
-    )
-{% endmacro %}
+-- {% macro json_pivot_keys() %}
+--     {% set keys = get_unique_json_keys(ref('int_submissions__unique_sample_json_keys')) %}
+--     (
+--         {% for key in keys %}
+--             '{{ key }}'{% if not loop.last %}, {% endif %}
+--         {% endfor %}
+--     )
+-- {% endmacro %}

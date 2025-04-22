@@ -1,3 +1,5 @@
+/* returns a unique list of json keys to later be used in the  pivot  model */
+
 {% macro get_unique_json_keys(source_model, key_col='json_key') %}
     {% set query %}
         SELECT DISTINCT {{ key_col }}

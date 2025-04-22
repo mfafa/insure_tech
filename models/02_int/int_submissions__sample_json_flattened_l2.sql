@@ -1,4 +1,4 @@
-/* This currently results in a blank table, but will be used for nested json */
+/* This currently results in a blank table, but will be used for nested json as required */
 
 {{ config(materialized='incremental', unique_key='merge_key') }}
 
