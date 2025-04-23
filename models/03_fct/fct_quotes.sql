@@ -7,13 +7,14 @@ SELECT
 
   -- Flags and metrics
   DATEDIFF('day', q.quoted_date, p.policy_created_at) AS _days_to_policy_bound,
-  CASE WHEN p.policy_created_at IS NOT NULL THEN TRUE ELSE FALSE END AS _policy_created_flag,
-  CASE 
-    WHEN p.policy_id IS NULL 
-         AND DATEDIFF('day', q.quoted_date, CURRENT_DATE()) > 30 
-    THEN TRUE 
-    ELSE FALSE 
-  END AS _quote_expired, -- quotes with policies exist that have been bounded after 30 days, this logic needs to be validated
+  CASE WHEN p.policy_created_at IS NOT NULL THEN TRUE ELSE FALSE END AS _policy_created_flag
+--   ,
+--   CASE 
+--     WHEN p.policy_id IS NULL 
+--          AND DATEDIFF('day', q.quoted_date, CURRENT_DATE()) > 30 
+--     THEN TRUE 
+--     ELSE FALSE 
+--   END AS _quote_expired, -- quotes with policies exist that have been bounded after 30 days, this logic needs to be validated
 
   -- Metadata fields
   q.__loaded_at,
